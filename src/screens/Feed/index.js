@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, FlatList } from 'react-native';
 import { Header } from '../../components/Header';
-import { Post, Head, Avatar, Name, PostImage, Description, Loading } from './styles';
+import { Post, Head, Avatar, Name, Description, Loading } from './styles';
+import { LazyImage } from '../../components/LazyImage';
 
 export const Feed = () => {
 
@@ -10,6 +11,7 @@ export const Feed = () => {
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
+    const [viewable, setViewable] = useState([]);
 
     const loadPage = async (pageNumber = page, shouldRefresh = false) => {
 
@@ -30,11 +32,13 @@ export const Feed = () => {
 
     const refreshList = async () => {
         setRefreshing(true);
-
         await loadPage(1, true);
-
         setRefreshing(false);
     }
+
+    const handleViewableChanged = useCallback(({ changed }) => {
+        setViewable(changed.map(({ item }) => item.id));
+    }, []);
 
     useEffect(() => {
         loadPage();
@@ -51,6 +55,8 @@ export const Feed = () => {
                 ListFooterComponent={loading && <Loading />}
                 onRefresh={refreshList}
                 refreshing={refreshing}
+                onViewableItemsChanged={handleViewableChanged}
+                viewabilityConfig={{ viewAreaCoveragePercentThreshold: 40 }}
                 renderItem={({ item }) => (
                     <Post>
                         <Head>
@@ -58,7 +64,12 @@ export const Feed = () => {
                             <Name>{item.author.name}</Name>
                         </Head>
 
-                        <PostImage ratio={item.aspectRatio} source={{ uri: item.image }} />
+                        <LazyImage
+                            shouldLoad={viewable.includes(item.id)}
+                            aspectRatio={item.aspectRatio}
+                            source={{ uri: item.image }}
+                            smallSource={{ uri: item.small }}
+                        />
 
                         <Description>
                             <Name>{item.author.name}</Name> {item.description}
