@@ -11,7 +11,7 @@ Conforme vou adquirindo novas habilidades, irei atualizando o projeto em novas v
 
 ## 🚀 Screenshots
 <img src="./src/assets/screenshot.png" alt="App screenshot" />
-<video src="./src/assets/video.mp4" type="video/mp4"></video>
+<video style="border-radius: 0.3rem;" width="60%" autoplay src="./src/assets/video.mp4" type="video/mp4"></video>
 
 # Insta Clone
 
