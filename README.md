@@ -11,7 +11,9 @@ Conforme vou adquirindo novas habilidades, irei atualizando o projeto em novas v
 
 ## 🚀 Screenshots
 <img src="./src/assets/screenshot.png" alt="App screenshot" />
-<video autoplay width="100%" src="./src/assets/video.mp4" alt="App screenshot"></video>
+<video>
+  <source width="100%" src="./src/assets/video.mp4" type="video/mp4"></source>
+</video>
 
 # Insta Clone
 
@@ -23,7 +25,7 @@ Conforme vou adquirindo novas habilidades, irei atualizando o projeto em novas v
 | :fire: Desafio     | https://github.com/FilipiRafael/insta-clone-react-native
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
-![](https://github.com/FilipiRafael/doingdev-mobile-app/blob/main/src/assets/screenshot1.png?raw=true#vitrinedev)
+![](https://raw.githubusercontent.com/FilipiRafael/insta-clone-react-native/main/src/assets/screenshot.png#vitrinedev)
 
 ## Detalhes do projeto
 
